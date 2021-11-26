@@ -1,0 +1,76 @@
+<nb-card size="medium">
+  <nb-card-header class="flex">
+    <div class="col-3 flex">
+      <nb-icon icon="people-outline"></nb-icon>
+      <nb-action badgeStatus="info"
+                 badgePosition="right"
+                 badgeText="{{patients.length}}">
+        <span class="title">Meine Patienten</span>
+      </nb-action>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-6 flex">
+      <div class="col-2 pathwayStep">
+        <span class="header">Anmeldung</span>
+      </div>
+      <div class="col-2 pathwayStep">
+        <span class="header">Material</span>
+      </div>
+      <div class="col-2 pathwayStep">
+        <span class="header">TZG check</span>
+      </div>
+      <div class="col-2 pathwayStep">
+        <span class="header">Sequencing</span>
+      </div>
+      <div class="col-2 pathwayStep">
+        <span class="header">MTB</span>
+      </div>
+      <div class="col-2 pathwayStep">
+        <span class="header">Follow-up</span>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </nb-card-header>
+  <nb-card-body class="flex">
+    <nb-list>
+      <nb-list-item class="flex entry" *ngFor="let p of patients">
+        <div class="col-3">
+          <nb-user [name]="p.name" [title]="p.diagnosis" size="large"></nb-user>
+        </div>
+        <div class="patientInfo col-2">
+          <div class="flex">{{p.birthday | date : 'shortDate'}}</div>
+          <div class="flex">{{p.diagnosis}}</div>
+        </div>
+        <div class="col-6 flex">
+          <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.anmeldung}"></ng-container>
+          <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.material}"></ng-container>
+          <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.tzgCheck}"></ng-container>
+          <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.sequencing}"></ng-container>
+          <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.mtb}"></ng-container>
+          <div class="col-2 pathwayStep">
+            <div class="icons">
+              <ng-container *ngFor="let f of p.pathway.followUps">
+                <nb-icon *ngIf="f.note" [icon]="getIcon(f)" [class]="f.status" [nbTooltip]="f.note"></nb-icon>
+                <nb-icon *ngIf="!f.note" [icon]="getIcon(f)" [class]="f.status"></nb-icon>
+              </ng-container>
+            </div>
+            <span>{{latestFollowUp(p) | date :'shortDate'}} </span>
+          </div>
+        </div>
+        <div class="col-1 flex actions">
+          <nb-icon icon="menu-2" pack="eva"></nb-icon>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #singlePathwayItem let-item="item">
+  <div class="col-2 pathwayStep">
+    <div class="icons">
+      <nb-icon *ngIf="item.note" [icon]="getIcon(item)" [class]="item.status" [nbTooltip]="item.note"></nb-icon>
+      <nb-icon *ngIf="!item.note" [icon]="getIcon(item)" [class]="item.status"></nb-icon>
+    </div>
+    <span>{{item.timestamp | date :'shortDate'}} </span>
+  </div>
+</ng-template>

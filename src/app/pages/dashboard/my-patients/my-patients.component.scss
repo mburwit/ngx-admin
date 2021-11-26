@@ -1,0 +1,80 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .flex {
+    display: flex;
+  }
+
+  nb-card-header {
+    padding: 1rem 0;
+
+    div {
+
+      nb-icon {
+        margin-right: 0.75rem;
+      }
+
+      .title {
+        padding-right: 1.75rem;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  nb-card-body {
+    padding: 0;
+  }
+
+  .entry {
+    align-items: stretch;
+    padding: 1rem 0;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .patientInfo {
+      display: flex;
+      flex-direction: column;
+      font-size: small;
+    }
+  }
+
+  .pathwayStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: small;
+    white-space: nowrap;
+
+    .header {
+      font-size: small;
+    }
+
+    .icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .green {
+        color: #226e25;
+      }
+
+      .red {
+        color: #f44336;
+      }
+
+      .yellow {
+        color: #ffb60c;
+      }
+
+      .grey {
+        color: #606060;
+      }
+    }
+  }
+}

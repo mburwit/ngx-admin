@@ -1,0 +1,58 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  .accordion-container {
+    margin-bottom: nb-theme(card-margin-bottom);
+  }
+
+  ::ng-deep nb-accordion {
+
+    nb-accordion-item {
+
+      nb-accordion-item-header {
+        nb-icon {
+          margin-right: 0.75rem;
+        }
+      }
+
+      nb-accordion-item-body {
+        overflow: auto;
+      }
+
+      .entry {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+    }
+
+    &.small {
+      nb-accordion-item {
+
+        &.expanded {
+          max-height: 19.95rem;
+        }
+
+        ::ng-deep .item-body {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  ::ng-deep nb-card {
+    &.size-medium {
+      height: 30.18rem;
+    }
+  }
+}

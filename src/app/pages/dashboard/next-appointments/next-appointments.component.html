@@ -1,0 +1,26 @@
+<nb-accordion class="small">
+  <nb-accordion-item [collapsed]="true">
+    <nb-accordion-item-header>
+      <nb-icon icon="calendar-outline"></nb-icon>
+      <nb-action badgeStatus="info"
+                 badgePosition="right"
+                 badgeText="{{appointments.length}}">
+        <span class="title">Nächste Termine</span>
+      </nb-action>
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <nb-list>
+        <nb-list-item class="entry" *ngFor="let a of appointments">
+          <nb-user [name]="a.attendees[0]?.name" [title]="a.time | date : 'shortDate'" size="large"></nb-user>
+          <nb-action class="task-action">
+            <nb-icon [nbContextMenu]="[{title: 'Erledigt', icon: 'checkmark', data: {action: 'done', id: a.id}}]"
+                     nbContextMenuTag="appointment-menu-{{a.id}}" icon="menu-2"></nb-icon>
+          </nb-action>
+        </nb-list-item>
+        <nb-list-item *ngIf="appointments.length < 1" class="entry">
+          Derzeit keine Termine
+        </nb-list-item>
+      </nb-list>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

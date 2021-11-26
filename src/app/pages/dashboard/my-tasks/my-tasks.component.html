@@ -1,0 +1,26 @@
+<nb-accordion class="small">
+  <nb-accordion-item [collapsed]="true">
+    <nb-accordion-item-header>
+      <nb-icon icon="checkmark-square-outline"></nb-icon>
+      <nb-action badgeStatus="info"
+                 badgePosition="right"
+                 badgeText="{{tasks.length}}">
+        <span class="title">Meine Aufgaben</span>
+      </nb-action>
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <nb-list>
+        <nb-list-item class="entry" *ngFor="let t of tasks">
+          <nb-user [name]="t.title" [title]="t.patient?.name" size="large"></nb-user>
+          <nb-action class="task-action">
+            <nb-icon [nbContextMenu]="[{title: 'Erledigt', icon: 'checkmark', data: {action: 'done', id: t.id}}]"
+                     nbContextMenuTag="task-menu-{{t.id}}" icon="menu-2"></nb-icon>
+          </nb-action>
+        </nb-list-item>
+        <nb-list-item *ngIf="tasks.length < 1" class="entry">
+          Derzeit keine Aufgaben
+        </nb-list-item>
+      </nb-list>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

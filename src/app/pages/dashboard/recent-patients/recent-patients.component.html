@@ -1,0 +1,18 @@
+<nb-accordion class="small">
+  <nb-accordion-item [collapsed]="true">
+    <nb-accordion-item-header>
+      <nb-icon icon="people-outline"></nb-icon>
+      <span class="title">Letzte Patienten</span>
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <nb-list>
+        <nb-list-item class="entry" *ngFor="let p of patients">
+          <nb-user [name]="p.name" title="Aktuell: {{currentStep(p)}}" size="large"></nb-user>
+        </nb-list-item>
+        <nb-list-item *ngIf="patients.length < 1" class="entry">
+          Derzeit keine Patienten
+        </nb-list-item>
+      </nb-list>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>
