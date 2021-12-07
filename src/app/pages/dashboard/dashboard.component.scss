@@ -18,6 +18,10 @@
 
       nb-accordion-item-body {
         overflow: auto;
+
+        ::ng-deep .item-body {
+          padding: 0;
+        }
       }
 
       .entry {
@@ -38,13 +42,16 @@
 
     &.small {
       nb-accordion-item {
-
         &.expanded {
           max-height: 19.95rem;
         }
+      }
+    }
 
-        ::ng-deep .item-body {
-          padding: 0;
+    &.medium {
+      nb-accordion-item {
+        &.expanded {
+          max-height: 30.1rem;
         }
       }
     }
