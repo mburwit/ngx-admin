@@ -24,7 +24,7 @@ export class NextAppointmentsComponent implements OnInit, OnDestroy {
         this.appointments = appointments;
       });
     this.menuService.onItemClick()
-      .pipe(filter(({tag}) => tag.startsWith('appointment-menu-'))).subscribe((event) => {
+      .pipe(filter(({tag}) => tag && tag.startsWith('appointment-menu-'))).subscribe((event) => {
       this.onAction(event.item.data);
     });
   }

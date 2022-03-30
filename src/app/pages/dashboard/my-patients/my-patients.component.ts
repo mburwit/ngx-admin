@@ -1,7 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {takeWhile} from 'rxjs/operators';
+import {filter, takeWhile} from 'rxjs/operators';
 import {PatientService} from '../../../@core/mock/patients.service';
 import {PathwayItem, Patient} from '../../../@core/data/patients';
+import {NbMenuService} from '@nebular/theme';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-my-patients',
@@ -17,11 +19,17 @@ export class MyPatientsComponent implements OnInit, OnDestroy {
 
   patients: Patient[];
 
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService,
+              private menuService: NbMenuService,
+              private router: Router) {
     this.patientService.getPatients().pipe(takeWhile(() => this.alive))
       .subscribe((patients: Patient[]) => {
         this.patients = patients;
       });
+    this.menuService.onItemClick()
+        .pipe(filter(({tag}) => tag && tag.startsWith('patient-menu-'))).subscribe((event) => {
+      this.onAction(event.item.data);
+    });
   }
 
   ngOnDestroy() {
@@ -43,6 +51,15 @@ export class MyPatientsComponent implements OnInit, OnDestroy {
       case 'yellow': return 'play-circle';
       case 'red': return 'alert-triangle';
       default: return 'radio-button-off';
+    }
+  }
+
+  onAction(event: { action: string, id: string }) {
+    this.patientService.selectPatient(event.id);
+    if ('pathway' === event.action) {
+      this.router.navigate(['/pages', 'pathway']).then();
+    } else if ('documents' === event.action) {
+      this.router.navigate(['/pages', 'documents']).then();
     }
   }
 }

@@ -5,6 +5,8 @@ import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
+import {PathwayModule} from './pathway/pathway.module';
+import {DocumentsModule} from './documents/documents.module';
 
 @NgModule({
   imports: [
@@ -12,6 +14,8 @@ import { PagesRoutingModule } from './pages-routing.module';
     ThemeModule,
     NbMenuModule,
     DashboardModule,
+    PathwayModule,
+    DocumentsModule,
   ],
   declarations: [
     PagesComponent,

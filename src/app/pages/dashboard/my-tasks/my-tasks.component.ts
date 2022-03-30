@@ -24,7 +24,7 @@ export class MyTasksComponent implements OnInit, OnDestroy {
         this.tasks = tasks;
       });
     this.menuService.onItemClick()
-      .pipe(filter(({tag}) => tag.startsWith('task-menu-'))).subscribe((event) => {
+      .pipe(filter(({tag}) => tag && tag.startsWith('task-menu-'))).subscribe((event) => {
       this.onAction(event.item.data);
     });
   }

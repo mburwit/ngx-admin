@@ -1,5 +1,6 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import {SelectiveStrategy} from './selective-strategy.service';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,8 @@ export const routes: Routes = [
 
 const config: ExtraOptions = {
   useHash: true,
+  enableTracing: false,
+  preloadingStrategy: SelectiveStrategy,
 };
 
 @NgModule({

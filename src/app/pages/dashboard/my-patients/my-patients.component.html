@@ -43,11 +43,16 @@
             <div class="flex">{{p.diagnosis}}</div>
           </div>
           <div class="col-6 flex">
-            <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.anmeldung}"></ng-container>
-            <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.material}"></ng-container>
-            <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.tzgCheck}"></ng-container>
-            <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.sequencing}"></ng-container>
-            <ng-container [ngTemplateOutlet]="singlePathwayItem" [ngTemplateOutletContext]="{item: p.pathway.mtb}"></ng-container>
+            <ng-container [ngTemplateOutlet]="singlePathwayItem"
+                          [ngTemplateOutletContext]="{item: p.pathway.anmeldung}"></ng-container>
+            <ng-container [ngTemplateOutlet]="singlePathwayItem"
+                          [ngTemplateOutletContext]="{item: p.pathway.material}"></ng-container>
+            <ng-container [ngTemplateOutlet]="singlePathwayItem"
+                          [ngTemplateOutletContext]="{item: p.pathway.tzgCheck}"></ng-container>
+            <ng-container [ngTemplateOutlet]="singlePathwayItem"
+                          [ngTemplateOutletContext]="{item: p.pathway.sequencing}"></ng-container>
+            <ng-container [ngTemplateOutlet]="singlePathwayItem"
+                          [ngTemplateOutletContext]="{item: p.pathway.mtb}"></ng-container>
             <div class="col-2 pathwayStep">
               <div class="icons">
                 <ng-container *ngFor="let f of p.pathway.followUps">
@@ -59,7 +64,13 @@
             </div>
           </div>
           <div class="col-1 flex actions">
-            <nb-icon icon="menu-2" pack="eva"></nb-icon>
+            <nb-action class="patient-action">
+              <nb-icon [nbContextMenu]="[
+              {title: 'Pfadansicht', icon: 'trending-up-outline', data: {action: 'pathway', id: p.id}},
+              {title: 'Dokumente', icon: 'file-text-outline', data: {action: 'documents', id: p.id}}
+              ]"
+                       nbContextMenuTag="patient-menu-{{p.id}}" icon="menu-2"></nb-icon>
+            </nb-action>
           </div>
         </nb-list-item>
       </nb-list>

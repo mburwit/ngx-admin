@@ -8,12 +8,12 @@ export class UserService extends UserData {
   private time: Date = new Date;
 
   private users = {
-    nick: {name: 'Peter Maler', picture: 'https://i.pravatar.cc/300'},
-    eva: {name: 'Eva Moor', picture: 'https://i.pravatar.cc/300'},
-    jack: {name: 'Jack Williams', picture: 'https://i.pravatar.cc/300'},
-    lee: {name: 'Lee Wong', picture: 'https://i.pravatar.cc/300'},
-    alan: {name: 'Alan Thompson', picture: 'https://i.pravatar.cc/300'},
-    kate: {name: 'Kate Martinez', picture: 'https://i.pravatar.cc/300'},
+    nick: {id: 'nick', name: 'Peter Maler', picture: 'https://i.pravatar.cc/300'},
+    eva: {id: 'eva', name: 'Eva Moor', picture: 'https://i.pravatar.cc/300'},
+    jack: {id: 'jack', name: 'Jack Williams', picture: 'https://i.pravatar.cc/300'},
+    lee: {id: 'lee', name: 'Lee Wong', picture: 'https://i.pravatar.cc/300'},
+    alan: {id: 'alan', name: 'Alan Thompson', picture: 'https://i.pravatar.cc/300'},
+    kate: {id: 'kate', name: 'Kate Martinez', picture: 'https://i.pravatar.cc/300'},
   };
   private types = {
     mobile: 'mobile',

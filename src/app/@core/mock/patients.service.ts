@@ -2,14 +2,32 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {patients} from './sample-data';
 import {PathwayItem, Patient, PatientData} from '../data/patients';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PatientService extends PatientData {
+
+  private readonly lsSelectedPatientKey = btoa('selectedPatient');
 
   private patients$: BehaviorSubject<Patient[]> = new BehaviorSubject<Patient[]>(patients);
 
   getPatients(): Observable<Patient[]> {
     return this.patients$.asObservable();
+  }
+
+  getSelectedPatient(): string | null {
+    return localStorage.getItem(this.lsSelectedPatientKey) === null ? null :
+      atob(localStorage.getItem(this.lsSelectedPatientKey));
+  }
+
+  getPatient(id: string): Observable<Patient> {
+    return this.getPatients().pipe(
+      map(patient => patient.find(p => p.id === id)),
+    );
+  }
+
+  selectPatient(id: string) {
+    localStorage.setItem(this.lsSelectedPatientKey, btoa(id));
   }
 
   static currentPathwayStep(p: Patient, status?: 'green' | 'yellow' | 'red'): PathwayItem {
