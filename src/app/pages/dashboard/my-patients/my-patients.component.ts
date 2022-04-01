@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {filter, takeWhile} from 'rxjs/operators';
 import {PatientService} from '../../../@core/mock/patients.service';
 import {PathwayItem, Patient} from '../../../@core/data/patients';
@@ -10,10 +10,7 @@ import {Router} from '@angular/router';
   templateUrl: './my-patients.component.html',
   styleUrls: ['./my-patients.component.scss'],
 })
-export class MyPatientsComponent implements OnInit, OnDestroy {
-
-  ngOnInit(): void {
-  }
+export class MyPatientsComponent implements OnDestroy {
 
   private alive = true;
 

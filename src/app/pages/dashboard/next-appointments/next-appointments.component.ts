@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {filter, takeWhile} from 'rxjs/operators';
 import {NbMenuService} from '@nebular/theme';
 import {Appointment} from '../../../@core/data/appointments';
@@ -9,10 +9,7 @@ import {AppointmentService} from '../../../@core/mock/appointments.service';
   templateUrl: './next-appointments.component.html',
   styleUrls: ['./next-appointments.component.scss'],
 })
-export class NextAppointmentsComponent implements OnInit, OnDestroy {
-
-  ngOnInit(): void {
-  }
+export class NextAppointmentsComponent implements OnDestroy {
 
   private alive = true;
 

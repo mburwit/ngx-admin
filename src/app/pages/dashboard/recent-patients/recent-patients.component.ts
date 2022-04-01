@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {takeWhile} from 'rxjs/operators';
 import {Patient} from '../../../@core/data/patients';
 import {PatientService} from '../../../@core/mock/patients.service';
@@ -8,10 +8,7 @@ import {PatientService} from '../../../@core/mock/patients.service';
   templateUrl: './recent-patients.component.html',
   styleUrls: ['./recent-patients.component.scss'],
 })
-export class RecentPatientsComponent implements OnInit, OnDestroy {
-
-  ngOnInit(): void {
-  }
+export class RecentPatientsComponent implements OnDestroy {
 
   private alive = true;
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PathwayItem, Patient} from '../../@core/data/patients';
 import {PatientService} from '../../@core/mock/patients.service';
 import {Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {DatePipe} from "@angular/common";
   templateUrl: './pathway.component.html',
   styleUrls: ['./pathway.component.scss'],
 })
-export class PathwayComponent implements OnInit, AfterViewInit {
+export class PathwayComponent implements OnInit {
 
   public patient: Patient;
   public steps: PathwayItem[] = [];
@@ -28,15 +28,6 @@ export class PathwayComponent implements OnInit, AfterViewInit {
     } else {
       this.loadPathwayItems(selectedPatientId);
     }
-  }
-
-  ngAfterViewInit(): void {
-    // const element = document.getElementById(this.currentPathwayStep.id);
-    // element.scrollIntoView({
-    //   behavior: "smooth",
-    //   block: "start",
-    //   inline: "nearest"
-    // });
   }
 
   private loadPathwayItems(selectedPatientId: string) {

@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'ngx-documents',
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.scss'],
 })
-export class DocumentsComponent implements OnInit {
+export class DocumentsComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
 }

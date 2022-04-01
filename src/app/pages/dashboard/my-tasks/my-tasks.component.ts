@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {filter, takeWhile} from 'rxjs/operators';
 import {NbMenuService} from '@nebular/theme';
 import {TaskService} from '../../../@core/mock/tasks.service';
@@ -9,10 +9,7 @@ import {Task} from 'app/@core/data/tasks';
   templateUrl: './my-tasks.component.html',
   styleUrls: ['./my-tasks.component.scss'],
 })
-export class MyTasksComponent implements OnInit, OnDestroy {
-
-  ngOnInit(): void {
-  }
+export class MyTasksComponent implements OnDestroy {
 
   private alive = true;
 

@@ -152,7 +152,7 @@
       "style": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "ngx"
+      "prefix": "app"
     }
   },
   "cli": {
