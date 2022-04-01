@@ -42,7 +42,7 @@ export class RecentPatientsComponent implements OnInit, OnDestroy {
   }
 
   currentStep(p: Patient) {
-    return PatientService.currentPathwayStep(p).title;
+    return PatientService.currentPathwayStep(p)?.title || '';
   }
 }
 

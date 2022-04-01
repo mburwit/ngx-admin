@@ -61,19 +61,19 @@
       align-items: center;
 
       .green {
-        color: #226e25;
+        color: nb-theme(color-success-default);
       }
 
       .red {
-        color: #f44336;
+        color: nb-theme(color-danger-default);
       }
 
       .yellow {
-        color: #ffb60c;
+        color: nb-theme(color-warning-default);
       }
 
       .grey {
-        color: #606060;
+        color: nb-theme(color-basic-disabled);
       }
     }
   }

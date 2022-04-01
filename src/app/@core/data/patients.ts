@@ -1,7 +1,9 @@
 import {User} from './users';
 import {Observable} from 'rxjs';
+import {v4 as uuid} from 'uuid';
 
 export interface PathwayItem {
+  readonly id: string;
   readonly title: string;
   status: string;
   timestamp?: Date;
@@ -10,11 +12,11 @@ export interface PathwayItem {
 
 export class Pathway {
   lastChanged: Date = new Date();
-  anmeldung: PathwayItem = {title: 'Anmeldung', status: 'grey'};
-  material: PathwayItem = {title: 'Material', status: 'grey'};
-  tzgCheck: PathwayItem = {title: 'TZG Check', status: 'grey'};
-  sequencing: PathwayItem = {title: 'Sequencing', status: 'grey'};
-  mtb: PathwayItem = {title: 'MTB', status: 'grey'};
+  anmeldung: PathwayItem = {id: uuid(), title: 'Anmeldung', status: 'grey'};
+  material: PathwayItem = {id: uuid(), title: 'Material', status: 'grey'};
+  tzgCheck: PathwayItem = {id: uuid(), title: 'TZG Check', status: 'grey'};
+  sequencing: PathwayItem = {id: uuid(), title: 'Sequencing', status: 'grey'};
+  mtb: PathwayItem = {id: uuid(), title: 'MTB', status: 'grey'};
   followUps: PathwayItem[] = [];
 
   constructor(config ?: any) {
@@ -27,7 +29,7 @@ export class Pathway {
       this.mtb = {...this.mtb, ...config.mtb};
       this.followUps = config.followUps || [];
       while (this.followUps.length < 5) {
-        this.followUps.push({title: 'Follow-up', status: 'grey'});
+        this.followUps.push({id: uuid(), title: 'Follow-up', status: 'grey'});
       }
     }
   }

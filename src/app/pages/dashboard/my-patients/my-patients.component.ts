@@ -37,8 +37,8 @@ export class MyPatientsComponent implements OnInit, OnDestroy {
   }
 
   latestFollowUp(p: Patient): Date {
-    const current: PathwayItem = PatientService.currentPathwayStep(p, 'green');
-    if (current.title === 'Follow-up') {
+    const current: PathwayItem = PatientService.currentPathwayStep(p, true);
+    if (current && current.title === 'Follow-up') {
       return current.timestamp;
     } else {
       return undefined;
@@ -46,12 +46,7 @@ export class MyPatientsComponent implements OnInit, OnDestroy {
   }
 
   getIcon(pathwayItem: PathwayItem) {
-    switch (pathwayItem.status) {
-      case 'green': return 'checkmark-circle-2';
-      case 'yellow': return 'play-circle';
-      case 'red': return 'alert-triangle';
-      default: return 'radio-button-off';
-    }
+    return this.patientService.getIcon(pathwayItem);
   }
 
   onAction(event: { action: string, id: string }) {

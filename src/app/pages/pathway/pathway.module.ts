@@ -2,8 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {PathwayComponent} from './pathway.component';
-import {NbCardModule, NbUserModule} from '@nebular/theme';
+import {
+  NbAccordionModule,
+  NbActionsModule,
+  NbBadgeModule,
+  NbCardModule,
+  NbIconModule,
+  NbUserModule
+} from '@nebular/theme';
 import {CommonModule} from "@angular/common";
+import {NgxMatTimelineModule} from "ngx-mat-timeline";
 
 @NgModule({
   imports: [
@@ -16,6 +24,11 @@ import {CommonModule} from "@angular/common";
     NbCardModule,
     NbUserModule,
     CommonModule,
+    NgxMatTimelineModule,
+    NbAccordionModule,
+    NbIconModule,
+    NbActionsModule,
+    NbBadgeModule,
   ],
   declarations: [
     PathwayComponent,

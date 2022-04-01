@@ -35,6 +35,9 @@
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "i18n-iso-countries"
             ]
           },
           "configurations": {
@@ -42,7 +45,7 @@
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "8kb"
                 }
               ],
               "optimization": true,

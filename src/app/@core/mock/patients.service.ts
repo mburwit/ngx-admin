@@ -30,28 +30,57 @@ export class PatientService extends PatientData {
     localStorage.setItem(this.lsSelectedPatientKey, btoa(id));
   }
 
-  static currentPathwayStep(p: Patient, status?: 'green' | 'yellow' | 'red'): PathwayItem {
-    if (!status) {
-      status = 'yellow';
-    }
-    for (let i = 4; i >= 0; i--) {
-      if (p.pathway.followUps[i].status === status) {
-        return p.pathway.followUps[i];
+  /**
+   * Returns the current step in the pathway.
+   * @param p the patient whose pathway is searched
+   * @param completed if true, it returns the latest completed (green) pathway step,
+   * otherwise it returns the latest pathway step that s not completed yet (default).
+   */
+  static currentPathwayStep(p: Patient, completed?: boolean): PathwayItem|undefined {
+    completed = completed === undefined ? false : completed;
+    const completeStatus = 'green';
+    let latestCompletedStep = undefined;
+    let currentStep = undefined;
+
+    if (p.pathway.anmeldung.status !== completeStatus) {
+      currentStep = p.pathway.anmeldung;
+    } else if (p.pathway.material.status !== completeStatus) {
+      latestCompletedStep = p.pathway.anmeldung;
+      currentStep = p.pathway.material;
+    } else if (p.pathway.tzgCheck.status !== completeStatus) {
+      latestCompletedStep = p.pathway.material;
+      currentStep = p.pathway.tzgCheck;
+    } else if (p.pathway.sequencing.status !== completeStatus) {
+      latestCompletedStep = p.pathway.tzgCheck;
+      currentStep = p.pathway.sequencing;
+    } else if (p.pathway.mtb.status !== completeStatus) {
+      latestCompletedStep = p.pathway.sequencing;
+      currentStep = p.pathway.mtb;
+    } else {
+      for (let i = 0; i < p.pathway.followUps.length; i++) {
+        if (p.pathway.followUps[i].status !== completeStatus) {
+          latestCompletedStep = i === 0 ? p.pathway.mtb : p.pathway.followUps[i - 1];
+          currentStep = p.pathway.followUps[i];
+          break;
+        }
       }
     }
+    if (!currentStep) {
+      latestCompletedStep = p.pathway.followUps[p.pathway.followUps.length - 1];
+    }
+    return completed ? latestCompletedStep : currentStep;
+  }
 
-    if (p.pathway.mtb.status === status) {
-      return p.pathway.mtb;
+  getIcon(pathwayItem: PathwayItem) {
+    switch (pathwayItem.status) {
+      case 'green':
+        return 'checkmark-circle-2';
+      case 'yellow':
+        return 'play-circle';
+      case 'red':
+        return 'alert-triangle';
+      default:
+        return 'radio-button-off';
     }
-    if (p.pathway.sequencing.status === status) {
-      return p.pathway.sequencing;
-    }
-    if (p.pathway.tzgCheck.status === status) {
-      return p.pathway.tzgCheck;
-    }
-    if (p.pathway.material.status === status) {
-      return p.pathway.material;
-    }
-    return p.pathway.anmeldung;
   }
 }
