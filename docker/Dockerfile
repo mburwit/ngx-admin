@@ -4,7 +4,7 @@ FROM node:14-alpine AS build
 RUN apk update && apk add git
 # clone app into workdir and checkout relevant branch
 RUN git clone https://github.com/mburwit/ngx-admin.git /usr/src/app \
-    && git checkout mihubx-prototyp \
+    && git checkout mihubx-prototyp
 # clone timeline library into workdir and checkout relevant branch
 RUN git clone https://github.com/mburwit/ngx-mat-timeline.git /usr/src/lib \
     && git checkout angular12
