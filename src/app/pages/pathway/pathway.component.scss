@@ -71,10 +71,12 @@
         float: right;
         margin: 0 0 0 10px;
       }
+      /* stylelint-disable */
       &::before {
         left: initial;
         right: -24px;
       }
+      /* stylelint-enable */
     }
   }
   &:nth-child(2n+1) {
@@ -108,10 +110,12 @@
         float: right;
         margin: 0 0 0 10px;
       }
+      /* stylelint-disable */
       &::before {
         left: initial;
         right: -24px;
       }
+      /* stylelint-enable */
     }
   }
 }
@@ -181,10 +185,12 @@
 .pathway-timeline.ngx-mat-timeline-horizontal.ngx-mat-timeline-center-alt .ngx-mat-timeline-item {
   &:nth-child(2n+1) {
     ::ng-deep .ngx-mat-timeline-item-content {
+      /* stylelint-disable */
       &::before {
         top: initial;
         bottom: -15px;
       }
+      /* stylelint-enable */
     }
   }
   &:nth-child(2n) {
