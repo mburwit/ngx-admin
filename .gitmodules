@@ -1,0 +1,3 @@
+[submodule "lib/ngx-mat-timeline"]
+	path = lib/ngx-mat-timeline
+	url = https://github.com/mburwit/ngx-mat-timeline.git

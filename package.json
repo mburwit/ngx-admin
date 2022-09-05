@@ -57,6 +57,7 @@
     "ionicons": "2.0.1",
     "moment": "^2.29.1",
     "nebular-icons": "1.1.0",
+    "ngx-mat-timeline": "file:lib/ngx-mat-timeline/dist/ngx-mat-timeline",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
     "roboto-fontface": "0.8.0",
